@@ -1,5 +1,7 @@
 ### Vars
 export EDITOR=atom
+export LANG=en_US.utf-8
+export LC_ALL=en_US.utf-8
 
 ### Style
 parse_branch() {
