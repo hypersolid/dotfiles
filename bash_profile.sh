@@ -7,7 +7,10 @@ export LC_ALL=en_US.utf-8
 parse_branch() {
   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 }
-export PS1="\n\t \[\e[0;31m\]\w\[\e[m\]\[\033[32m\] \$(parse_branch)\[\033[00m\]$ "
+away_from_home() {
+  if [ -n $SSH_AUTH_SOCK ]; then echo " ⌂ "; else hostname; fi
+}
+export PS1="\n\e[0;100m\]$(away_from_home)\[\e[m\] \t \[\e[0;31m\]\w\[\e[m\]\[\033[32m\] \$(parse_branch)\[\033[00m\]$ "
 
 ### Git stuff
 alias gpush="git push -u origin "
@@ -48,6 +51,7 @@ random(){
 }
 
 
+
 ### History
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=100000                   # big big history
@@ -79,3 +83,7 @@ export PATH=$PATH:/usr/local/go/bin:~/go/bin
 # Python
 PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
 export PATH
+
+ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
+
+. ~/scripts/*
