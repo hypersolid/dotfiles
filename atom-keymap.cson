@@ -37,3 +37,5 @@
   'alt-cmd-down': 'window:focus-pane-down'
   'alt-cmd-left': 'window:focus-pane-on-left'
   'alt-cmd-right': 'window:focus-pane-on-right'
+  'ctrl-u': 'editor:delete-to-beginning-of-line'
+  'ctrl-k': 'editor:delete-to-end-of-line'

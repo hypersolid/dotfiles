@@ -1,6 +1,5 @@
 ### Vars
-export BUNDLER_EDITOR=atom
-export PATH=$PATH:/usr/local/sbin:/Users/sol/.cargo/bin
+export EDITOR=atom
 
 ### Style
 parse_branch() {
@@ -9,12 +8,6 @@ parse_branch() {
 export PS1="\n\t \[\e[0;31m\]\w\[\e[m\]\[\033[32m\] \$(parse_branch)\[\033[00m\]$ "
 
 ### Git stuff
-ticket() {
-  git flow feature start $1
-  git checkout feature/$1
-  git push --set-upstream origin feature/$1
-}
-
 alias gpush="git push -u origin "
 alias gpull="git pull --rebase origin "
 alias gd="git diff "
@@ -23,13 +16,13 @@ alias gs="git status "
 alias gl="git log --color -p"
 alias glo="git log --graph --pretty=format:'%Cred%h%Creset %an: %s - %Creset %C(yellow)%d%Creset %Cgreen(%cr)%Creset' --abbrev-commit --date=relative"
 alias gcm="git commit -m"
+alias gcak="git commit --author='Alexander Krasnoschekov <akrasnoschekov@gmail.com>' -m"
 alias gco="git checkout"
 alias gr="git reset"
 alias ga="git add"
-
+alias gaa="git add -A"
 gc() {
-  # git commit -m "${parse_branch} ${*}"
-  message=`echo "$*"  | sed  's/\(.\)\(.*\)/\U\1\L\2/g'`
+  message=`echo "$*"  | sed  's/\(.\)\(.*\)/\U\1\E\2/g'`
   git commit -m "$(parse_branch) $message"
 }
 
@@ -45,10 +38,18 @@ run() {
     done
 }
 
+random(){
+  export random_string=$(openssl rand -base64 32)
+  echo $random_string | pbcopy
+  echo "$(date) $random_string" >> .random_string
+  echo "copied to buffer..."
+}
+
+
 ### History
-#export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
-#export HISTSIZE=100000                   # big big history
-#export HISTFILESIZE=100000               # big big history
+export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
+export HISTSIZE=100000                   # big big history
+export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
 
 # Save and reload the history after each command finishes
@@ -69,13 +70,10 @@ gitflow-cleanup-features(){
   git branch --merged $branch | tr -d '*' | grep feature | xargs git branch -d
 }
 
-# Projects
-random(){
-export random_string=$(openssl rand -base64 32)
-echo $random_string | pbcopy
-echo "$(date) $random_string" >> .random_string
-echo "copied to buffer..."
-}
-
-export GOPATH=~/go:~/development
+# Golang
+export GOPATH=~/development:~/go
 export PATH=$PATH:/usr/local/go/bin:~/go/bin
+
+# Python
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
