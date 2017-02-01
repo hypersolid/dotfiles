@@ -62,6 +62,8 @@ gitflow-cleanup-features(){
 ### MISC
 alias reload!='. ~/.bash_profile'
 alias copy-ssh-key='cat ~/.ssh/id_rsa.pub | pbcopy'
+alias pbcopy='xclip -selection clipboard'
+alias pbpaste='xclip -selection clipboard -o'
 
 run() {
   number=$1
