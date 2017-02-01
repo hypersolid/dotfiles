@@ -92,7 +92,7 @@ export HISTSIZE=100000                   # big big history
 export HISTFILESIZE=100000               # big big history
 shopt -s histappend                      # append to history, don't overwrite it
 
-export PS1="\n\e[0;94m\]\$(remote_shell)\[\e[m\]\t \[\e[0;31m\]\w\[\e[m\]\[\033[32m\] \$(parse_branch)\[\033[00m\]$ "
+export PS1="\n\[\e[0;94m\]\$(remote_shell)\[\033[00m\]\t \[\e[0;31m\]\w\[\e[m\]\[\033[32m\] \$(parse_branch)\[\033[00m\]$ "
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
 ### Golang
