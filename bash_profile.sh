@@ -79,10 +79,10 @@ random() {
 }
 
 remote_shell() {
-  if [ -n "$SSH_CLIENT"] || [ -n "$SSH_TTY" ]; then
-    echo ""
-  else
+  if [ -n "$SSH_CLIENT" ] || [ -n "$SSH_TTY" ]; then
     echo " $(hostname) "
+  else
+    echo ""
   fi
 }
 
@@ -94,10 +94,6 @@ shopt -s histappend                      # append to history, don't overwrite it
 
 export PS1="\n\e[0;94m\]\$(remote_shell)\[\e[m\]\t \[\e[0;31m\]\w\[\e[m\]\[\033[32m\] \$(parse_branch)\[\033[00m\]$ "
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
-
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
-fi
 
 ### Golang
 export GOPATH=~/development:~/go
