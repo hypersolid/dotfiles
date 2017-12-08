@@ -62,8 +62,8 @@ gitflow-cleanup-features(){
 ### MISC
 alias reload!='. ~/.bash_profile'
 alias copy-ssh-key='cat ~/.ssh/id_rsa.pub | pbcopy'
-alias pbcopy='xclip -selection clipboard'
-alias pbpaste='xclip -selection clipboard -o'
+#alias pbcopy='xclip -selection clipboard'
+#alias pbpaste='xclip -selection clipboard -o'
 
 run() {
   number=$1
@@ -108,4 +108,19 @@ export PATH
 ### Extras
 if [ -d ~/scripts ]; then
   . ~/scripts/*
+fi
+
+
+
+# Python virtual environments:
+# https://github.com/registerguard/registerguard.github.com/wiki/Install-python,-virtualenv,-virtualenvwrapper-in-a-brew-environment
+export WORKON_HOME=$HOME/.virtualenvs
+#export WORKON_HOME=/tmp/foo/.virtualenvs
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS='--no-site-packages'
+export PIP_VIRTUALENV_BASE=$WORKON_HOME
+export PIP_RESPECT_VIRTUALENV=true
+if [[ -r /usr/local/bin/virtualenvwrapper.sh ]]; then
+    source /usr/local/bin/virtualenvwrapper.sh
+else
+    echo "WARNING: Can't find virtualenvwrapper.sh"
 fi
