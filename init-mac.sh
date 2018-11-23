@@ -27,3 +27,6 @@ brew install python
 brew install rsync
 brew install svn
 brew install unzip
+
+# Goodies
+brew install ncdu

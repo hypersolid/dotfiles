@@ -5,7 +5,6 @@ export LC_ALL=en_US.utf-8
 
 ### SSH
 ssh-add ~/.ssh/id_rsa > /dev/null 2>&1
-
 _complete_ssh_hosts ()
 {
   COMPREPLY=()
@@ -24,14 +23,22 @@ _complete_ssh_hosts ()
   return 0
 }
 complete -F _complete_ssh_hosts ssh
+alias copy-ssh-key='cat ~/.ssh/id_rsa.pub | pbcopy'
 
 ### MISC
 alias reload!='. ~/.bash_profile'
-alias copy-ssh-key='cat ~/.ssh/id_rsa.pub | pbcopy'
 
 # Linux boxes:
 # alias pbcopy='xclip -selection clipboard'
 # alias pbpaste='xclip -selection clipboard -o'
+
+### Extras
+DOTFILES_EXTRAS=~/dotfiles/extras
+if [ -d $DOTFILES_EXTRAS ]; then
+  for extra in $DOTFILES_EXTRAS/*; do
+    source $extra
+  done
+fi
 
 ### BASH settings
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
@@ -42,8 +49,3 @@ shopt -s histappend                      # append to history, don't overwrite it
 export PS1="\n\[\e[0;94m\]\$(remote_shell)\[\033[00m\]\t \[\e[0;31m\]\w\[\e[m\]\[\033[32m\] \$(parse_branch)\[\033[00m\]$ "
 export PROMPT_COMMAND="history -a; $PROMPT_COMMAND"
 
-### Extras
-DOTFILES_EXTRAS=~/dotfiles/extras
-if [ -d $DOTFILES_EXTRAS ]; then
-  . $DOTFILES_EXTRAS/*
-fi
