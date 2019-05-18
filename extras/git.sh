@@ -1,6 +1,6 @@
 ### GIT ###
 parse_branch() {
-  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+  git branch 2> /dev/null | gsed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
 }
 alias gpush="git push -u origin "
 alias gpull="git pull --rebase origin "
@@ -15,7 +15,7 @@ alias gr="git reset"
 alias ga="git add"
 alias gaa="git add -A"
 gc() {
-  message=`echo "$*"  | sed  's/\(.\)\(.*\)/\U\1\E\2/g'`
+  message=`echo "$*"  | gsed  's/\(.\)\(.*\)/\U\1\E\2/g'`
   git commit -m "$(parse_branch) $message"
 }
 gitflow-cleanup-features(){
