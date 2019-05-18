@@ -33,9 +33,7 @@
 'body':
   'alt-cmd-v': 'pane:split-right-and-copy-active-item'
   'alt-cmd-h': 'pane:split-down-and-copy-active-item'
-  'alt-cmd-up': 'window:focus-pane-above'
-  'alt-cmd-down': 'window:focus-pane-down'
-  'alt-cmd-left': 'window:focus-pane-on-left'
-  'alt-cmd-right': 'window:focus-pane-on-right'
+  'alt-cmd-.': 'window:focus-next-pane'
+  'alt-cmd-,': 'window:focus-previous-pane'
   'ctrl-u': 'editor:delete-to-beginning-of-line'
   'ctrl-k': 'editor:delete-to-end-of-line'
