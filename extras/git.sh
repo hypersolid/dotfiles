@@ -1,6 +1,6 @@
 ### GIT ###
 parse_branch() {
-  git branch 2> /dev/null | gsed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/'
+  git branch 2> /dev/null | gsed -e '/^[^*]/d' -e 's/* \(.*\)/[\1]/' | gsed -e "s|[^/]*/\([A-Z]\+-[0-9]\+\).*|\1|g"
 }
 alias gpush="git push -u origin "
 alias gpull="git pull --rebase origin "
